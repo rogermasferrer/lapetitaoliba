@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="{{ config('app.locale') }}">
+	<head>
+	        <meta charset="utf-8">
+	        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	        <meta name="viewport" content="width=device-width, initial-scale=1">
+       
+		 <!-- Fonts -->
+	        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+		<link href="/css/app.css" rel="stylesheet" type="text/css">
+		<script src="/js/app.js"></script>
+
+		<title>App name - @yield('title')</title>
+	</head>
+	<body>
+		<div class="container">
+			@section('navbar')
+				Home	Contact
+				@show
+			@section('header')
+				<h1>@yield('title')</h1>
+				@show
+			@section('content')
+				<p>some content</p>
+				<p>some other content</p>
+				@show
+			@section('footer')
+				Menu again:	Home	Contact
+				@show
+		</div>
+	</body>
+</html>
+

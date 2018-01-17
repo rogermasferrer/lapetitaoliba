@@ -169,6 +169,8 @@ return [
          */
         // Requerida per formularis blade
         Collective\Html\HtmlServiceProvider::class,
+		// Requerida per a classe HTML
+		Illuminate\Html\HtmlServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -231,6 +233,8 @@ return [
         // Requerits per formularis blade
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+		// Requerits per a class HTML
+		'HTML'=> Illuminate\Html\HtmlFacade::class
     ],
 
 ];

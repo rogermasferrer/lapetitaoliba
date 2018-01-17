@@ -4,21 +4,27 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\BlogPost;
+use App\Models\Image;
 
 class BlogController extends Controller
 {
     public function index() {
-       $posts = BlogPost::get();
-       return view('blog', ['allPosts' => $posts]); 
+		$posts = BlogPost::with('images')->orderBy('created_at', 'desc')->get();
+		foreach ($posts as $post) {
+			if ($post->hasMany('App\Models\Image')) {
+				$post->image = $post->images()->orderBy('id','desc')->first();
+			}
+		}
+		return view('blog', ['allPosts' => $posts]);
     }
 
     public function list() {
         $posts = BlogPost::get();
-        return view('blog-list', ['allPosts' => $posts]);
+		return view('blog-list', ['allPosts' => $posts]);
     }
 
     public function add() {
-	return view('blog-post-add');
+		return view('blog-post-add');
     }
 
     public function create(Request $request) {
@@ -26,11 +32,14 @@ class BlogController extends Controller
             'title' => 'required',
             'body' => 'required'
         ]);
-	$blogPost = new BlogPost();
-        $blogPost->title = $request['title'];
-        $blogPost->body = $request['body'];
-        $blogPost->published = $request['published'] ? $request['published'] : 0;
+		$blogPost = new BlogPost();
+        $blogPost->title = $request->input('title');
+        $blogPost->body = $request->input('body');
+        $blogPost->published = $request->input('published') ? $request->input('published') : 0;
+		// Store relation with image
+		$image = Image::find($request->input('image'));
         $blogPost->save();
+		$blogPost->images()->attach($image);
 
         return redirect('/admin/blog/add')->with('success', 'Blog post added');
     }
@@ -38,15 +47,19 @@ class BlogController extends Controller
     public function view($id) {
         $blogPost = BlogPost::find($id);
         if (is_object($blogPost)) {
-            return view('blog-post-view', ['title' => $blogPost->title, 'body' => $blogPost->body]);
+			$image = $blogPost->images()->orderBy('id','desc')->first();
+            return view('blog-post-view', ['post' => $blogPost, 'image' => $image]);
         }
+
         return abort(404);
     }
 
     public function edit($id) {
         $blogPost = BlogPost::find($id);
         if (is_object($blogPost)) {
-            return view('blog-post-edit', ['id' => $id, 'title' => $blogPost->title, 'body' => $blogPost->body, 'published' => $blogPost->published]);
+			$image = $blogPost->images()->orderBy('id', 'desc')->first();
+
+            return view('blog-post-edit', ['post' => $blogPost, 'image' => $image]);
         }
         return abort(404);
     }
@@ -62,14 +75,25 @@ class BlogController extends Controller
             $blogPost->body = $request->body;
             $blogPost->published = $request->published ? $request->published : 0;
             $blogPost->save();
-            return redirect()->route('blog-view', ['id' => $id])->with('success', 'Blog post updated');
+			$image = Image::find($request->input('image'));
+			if (is_object($image)) {
+				$blogPost->images()->attach($image);
+	
+    	        return redirect()->route('blog.view', ['post' => $blogPost, 'image' => $image])->with('success', 'Blog post updated');
+			}
        }
        return abort(404);
     }
 
     public function delete($id) {
-        BlogPost::destroy($id);
-        return $this->list();
+		$message = ['error', 'Error deleting blog post'];
+		$blogPost = BlogPost::find($id);
+		if (is_object($blogPost) and $blogPost->hasMany('App\Models\Image')) {
+			$blogPost->images()->detach();
+    	    BlogPost::destroy($id);
+			$message = ['sucess', 'Blog post deleted'];
+		}
+        return $this->list()->with($message[0], $message[1]);
     }
 }
 

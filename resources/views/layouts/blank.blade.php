@@ -8,6 +8,8 @@
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
         <link href="/css/app.css" rel="stylesheet" type="text/css">
         <script src="/js/app.js"></script>
+		<!-- ckeditor plugin -->
+		<script src="/js/ckeditor/ckeditor.js"></script>
 
 	<title>@yield('title')</title>
     </head>

@@ -15,8 +15,8 @@
 		        	    <div class="col-md-10 col-md-offset-1">
     		        	    <h3>{{ $post->title }}</h3>
 							<p class="small">
-								Created: {{ $post->created_at }}<br />
-								Updated: {{ $post->updated_at }}
+								{{ ucfirst(__('created')) }}: {{ $post->created_at }}<br />
+								{{ ucfirst(__('updated')) }}: {{ $post->updated_at }}
 							</p>
 							@if (isset($post->image))
 								{{ HTML::image($post->image->path, $post->image->name, ['class' => 'img-thumbnail']) }}
@@ -30,7 +30,7 @@
 							@endphp
     		   	    	    {!! html_entity_decode($post->body) !!}
 							@if ($readMore === true)
-								{{ HTML::link(route('blog.view', ['id' => $post->id]), 'Read more') }}
+								{{ HTML::link(route('blog.view', ['id' => $post->id]), ucfirst(__('read more'))) }}
 							@endif
 	    	    	        <hr>
     	    	    	</div>

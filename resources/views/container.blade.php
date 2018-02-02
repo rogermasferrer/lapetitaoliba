@@ -1,6 +1,6 @@
 @extends('layouts.blank')
 
-@section('container')
+(@section('container')
 	@section('navbar')
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="container-fluid">
@@ -19,9 +19,17 @@
 			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			      <ul class="nav navbar-nav">
 					@auth
-				        <li>{{ HTML::link(route('admin'), 'Admin') }}</li>
+				        <li id="nav-item-admin" 
+							@if (Request::segment(1) == 'admin')
+								class="active"
+							@endif
+						>{{ HTML::link(route('admin'), ucfirst(__('management'))) }}</li>
 					@endauth
-			        <li class="active"><a href="/blog">Blog<span class="sr-only">(current)</span></a></li>
+			        <li id="nav-item-blog" 
+						@if (Request::segment(1) == 'blog')
+							class="active"
+						@endif
+					><a href="/blog">{{ ucfirst(__('blog')) }}<span class="sr-only">(current)</span></a></li>
 <!--			        <li class="dropdown">
 			          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
 			          <ul class="dropdown-menu">
@@ -47,8 +55,8 @@
                   <ul class="nav navbar-nav navbar-right">
 	                  <!-- Authentication Links -->
                       @guest
-                          <li><a href="{{ route('login') }}">Login</a></li>
-                          <li><a href="{{ route('register') }}">Register</a></li>
+                          <li><a href="{{ route('login') }}">{{ ucfirst(__('login')) }}</a></li>
+                          <li><a href="{{ route('register') }}">{{ ucfirst(__('register')) }}</a></li>
                       @else
                           <li class="dropdown">
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
@@ -60,7 +68,7 @@
                                      <a href="{{ route('logout') }}"
                                           onclick="event.preventDefault();
                                                    document.getElementById('logout-form').submit();">
-                                          Logout
+                                          {{ ucfirst(__('logout')) }}
                                       </a>
 
                                       <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

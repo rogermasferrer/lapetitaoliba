@@ -1,0 +1,39 @@
+{
+	"login": "entra",
+	"register": "registra't",
+	"logout": "surt",
+
+	"management": "administraci&oacute;",
+
+	"website management": "Administraci&oacute; del web",
+	"blog": "blog",
+	"add new post": "crea nou post",
+	"manage posts": "administra els posts",
+	"images": "imatges",
+	"add new image": "afegeix nova imatge",
+	"manage images": "administra les imatges",
+
+	"created": "creat",
+	"updated": "actualitzat",
+	"read more": "llegir m&eacute;s",
+	"post id": "id del post",
+
+	"add blog post": "crea nou post",
+	"title": "t&iacute;tol",
+	"body": "contingut",
+	"image": "imatge",
+	"published": "publicat",
+	"save": "desa",
+	"cancel": "cancel&middot;la",
+
+	"view": "mostra",
+	"edit": "edita",
+	"delete": "elimina",
+
+	"image file": "fitxer d'imatge",
+	"name": "nom",
+	"comment": "comentari",
+
+	"path": "ruta"
+}
+

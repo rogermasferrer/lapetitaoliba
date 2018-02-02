@@ -6,7 +6,7 @@
 	<div class="row">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				Post id: {{ $post->id }}
+				{{ ucfirst(__('post id')) }}: {{ $post->id }}
 			</div>
 			<div class="panel-body">
 				<div class="row">
@@ -16,8 +16,8 @@
 						</div>
 						<div class="col-md-12">
 	                        <p class="small">
-    	                        Created: {{ $post->created_at }}<br />
-        	                    Updated: {{ $post->updated_at }}
+    	                        {{ ucfirst(__('created')) }}: {{ $post->created_at }}<br />
+        	                    {{ ucfirst(__('updated')) }}: {{ $post->updated_at }}
             	            </p>
 						</div>
 						@if (isset($image))

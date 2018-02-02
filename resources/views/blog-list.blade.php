@@ -21,7 +21,7 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<div class="row">
-						<div class="col-md-12">Manage posts | {{ HTML::link(route('blogpost.add'), 'Add new post') }}</div>
+						<div class="col-md-12">{{ ucfirst(__('manage posts')) }} | {{ HTML::link(route('blogpost.add'), ucfirst(__('add new post'))) }}</div>
 					</div>
 				</div>
 				<div class="panel-body">
@@ -44,17 +44,17 @@
 				            </div>
 							<div class="col-sm-1">
 				                {{ Form::open(['action' => ['BlogController@view', $post->id], 'method' => 'get']) }}
-				                    {{ Form::submit('View', ['class' => 'btn btn-default btn-xs']) }}
+				                    {{ Form::submit(ucfirst(__('view')), ['class' => 'btn btn-default btn-xs']) }}
 				                {{ Form::close() }}
 							</div>
 				            <div class="col-sm-1">
 				                {{ Form::open(['action' => ['BlogController@edit', $post->id], 'method' => 'get']) }}
-				                    {{ Form::submit('Edit', ['class' => 'btn btn-primary btn-xs']) }}
+				                    {{ Form::submit(ucfirst(__('edit')), ['class' => 'btn btn-primary btn-xs']) }}
 				                {{ Form::close() }}
 						    </div>
 				            <div class="col-sm-1">
 				                {{ Form::open(['action' => ['BlogController@delete', $post->id]]) }}
-				                    {{ Form::submit('Delete', ['class' => 'btn btn-danger btn-xs']) }}
+				                    {{ Form::submit(ucfirst(__('delete')), ['class' => 'btn btn-danger btn-xs']) }}
 				                {{ Form::close() }}
 				            </div>
 							<div class="clearfix"></div>

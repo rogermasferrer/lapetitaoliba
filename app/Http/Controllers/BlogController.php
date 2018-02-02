@@ -40,7 +40,6 @@ class BlogController extends Controller
 		$image = Image::find($request->input('image'));
         $blogPost->save();
 		$blogPost->images()->attach($image);
-
         return redirect('/admin/blog/add')->with('success', 'Blog post added');
     }
 
@@ -50,7 +49,6 @@ class BlogController extends Controller
 			$image = $blogPost->images()->orderBy('id','desc')->first();
             return view('blog-post-view', ['post' => $blogPost, 'image' => $image]);
         }
-
         return abort(404);
     }
 
@@ -78,7 +76,6 @@ class BlogController extends Controller
 			$image = Image::find($request->input('image'));
 			if (is_object($image)) {
 				$blogPost->images()->attach($image);
-	
     	        return redirect()->route('blog.view', ['post' => $blogPost, 'image' => $image])->with('success', 'Blog post updated');
 			}
        }

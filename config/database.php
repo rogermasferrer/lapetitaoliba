@@ -41,7 +41,7 @@ return [
 
         'mysql_dev' => [
             'driver' => 'mysql',
-            'host' => env('DB_HOST', '172.18.0.3'),
+            'host' => env('DB_HOST', 'db'),
             'port' => env('DB_PORT', '3306'),
             'database' => env('DB_DATABASE', 'laraveldb_dev'),
             'username' => env('DB_USERNAME', 'root'),

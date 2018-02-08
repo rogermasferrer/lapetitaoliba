@@ -11,8 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('container');
+// Authentication routes
+Auth::routes();
+//Route::get('/home', 'HomeController@index')->name('home');
+
+// Application routes
+Route::get('/', 'BlogController@index');
+Route::get('/home', function() {
+	return redirect(route('admin'));
 });
 
 //Route::middleware(['VerifyCsrfToken'])->group(function() {
@@ -31,20 +37,47 @@ Route::get('/', function () {
 
 //Route::get('home', 'HomeController@index');
 
-// View all blog posts
+// View blog
 Route::get('blog', 'BlogController@index');
-// List all blog posts
-Route::get('admin/blog', 'BlogController@list');
-// Add blog post
-Route::get('admin/blog/add', function() {
-    return view('blog-post-add');
-});
-Route::post('admin/blog/add', 'BlogController@create');
 // View a blog post
-Route::get('admin/blog/{id}', 'BlogController@view')->name('blog-view');
-// Edit a blog post
-Route::get('admin/blog/edit/{id}', 'BlogController@edit');
-Route::post('admin/blog/edit/{id}', 'BlogController@update');
-// Delte a blog post
-Route::post('admin/blog/delete/{id}', 'BlogController@delete');
+Route::get('blog/{id}', 'BlogController@view')->name('blog.view');
+
+Route::middleware(['auth'])->group(function() {
+	Route::prefix('admin')->group(function() {
+		/////////////////////////////////////////////////////////////////////////////////////
+		// ADMIN
+		/////////////////////////////////////////////////////////////////////////////////////
+
+		Route::get('/', 'AdminController@index')->name('admin');
+		/////////////////////////////////////////////////////////////////////////////////////
+		// BLOG
+		/////////////////////////////////////////////////////////////////////////////////////
+		// View all blog posts
+		Route::get('blog', 'BlogController@list')->name('blog.list');;
+		// Add blog post
+		Route::get('blog/add', 'BlogController@add')->name('blogpost.add'); 
+		Route::post('blog/add', 'BlogController@create');
+		// Edit a blog post
+		Route::get('blog/edit/{id}', 'BlogController@edit');
+		Route::post('blog/edit/{id}', 'BlogController@update');
+		// Delte a blog post
+		Route::post('blog/delete/{id}', 'BlogController@delete');
+
+		//////////////////////////////////////////////////////////////////////////////////////
+		// IMAGES
+		//////////////////////////////////////////////////////////////////////////////////////
+		// View all uploaded images
+		Route::get('images' , 'ImagesController@list')->name('images.list');
+		// Upload image
+		Route::get('images/add', 'ImagesController@add')->name('images.add');
+		Route::post('images/add', 'ImagesController@create');
+		// View an image
+
+		// Edit an image
+		Route::get('images/edit/{id}', 'ImagesController@edit');
+		Route::post('images/edit/{id}', 'ImagesController@update');
+		// Delete an image
+		Route::post('images/delete/{id}', 'ImagesController@delete');
+	});
+});
 

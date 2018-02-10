@@ -68,4 +68,18 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
+
+	/**
+	 * Esborrar per a permetre registres d'usuari
+	 */
+	public function showRegistrationForm()
+	{
+    	return redirect('login');
+	}
+
+	/**
+     * Esborrar per a permetre registres d'usuari
+     */
+	public function register()
+	{	}
 }

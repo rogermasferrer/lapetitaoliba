@@ -42,7 +42,7 @@ Route::get('blog', 'BlogController@index');
 // View a blog post
 Route::get('blog/{id}', 'BlogController@view')->name('blog.view');
 
-Route::middleware(['auth'])->group(function() {
+Route::middleware(['auth','check_role:admin'])->group(function() {
 	Route::prefix('admin')->group(function() {
 		/////////////////////////////////////////////////////////////////////////////////////
 		// ADMIN

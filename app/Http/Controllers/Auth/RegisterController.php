@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Models\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -27,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/blog';
 
     /**
      * Create a new controller instance.
@@ -62,26 +63,26 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $user::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
-		$user->roles()->attach(Role::wbere('name', 'user')->first();
+		$user->roles()->attach(Role::where('name', 'user')->first());
 		return $user;
     }
 
-	/**
-	 * Esborrar per a permetre registres d'usuari
-	 */
-	public function showRegistrationForm()
-	{
-    	return redirect('login');
-	}
-
-	/**
-     * Esborrar per a permetre registres d'usuari
-     */
-	public function register()
-	{	}
+//	/**
+//	 * Esborrar per a permetre registres d'usuari
+//	 */
+//	public function showRegistrationForm()
+//	{
+//    	return redirect('login');
+//	}
+//
+//	/**
+//     * Esborrar per a permetre registres d'usuari
+//     */
+//	public function register()
+//	{	}
 }

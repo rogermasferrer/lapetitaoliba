@@ -19,11 +19,13 @@
 			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			      <ul class="nav navbar-nav">
 					@auth
-				        <li id="nav-item-admin" 
-							@if (Request::segment(1) == 'admin')
-								class="active"
-							@endif
-						>{{ HTML::link(route('admin'), ucfirst(__('management'))) }}</li>
+						@if (Auth::user()->hasRole('admin'))
+					        <li id="nav-item-admin" 
+								@if (Request::segment(1) == 'admin')
+									class="active"
+								@endif
+							>{{ HTML::link(route('admin'), ucfirst(__('management'))) }}</li>
+						@endif
 					@endauth
 			        <li id="nav-item-blog" 
 						@if (Request::segment(1) == 'blog')

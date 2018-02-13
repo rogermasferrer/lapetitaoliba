@@ -19,7 +19,7 @@ class ContactEmailController extends Controller
             'message' => 'required|string',
             'attachment' => 'nullable|file|max:2048'
         ]);		
-		Mail::to('contacte@botiga.lapetitaoliba.com')->send(new MailgunTest());
+		Mail::to('contacte@botiga.lapetitaoliba.cat')->send(new MailgunTest());
 		return redirect('contact')->with('success', 'email sent');
 	}
 }

@@ -34,6 +34,13 @@
 	"name": "nom",
 	"comment": "comentari",
 
-	"path": "ruta"
+	"path": "ruta",
+
+	"contact us": "contacta amb nosaltres",
+	"your email": "la teva adre&ccedil;a",
+	"your name": "el teu nom",
+	"message": "missatge",
+	"attachment": "adjunt",
+	"email sent": "missatge enviat"
 }
 

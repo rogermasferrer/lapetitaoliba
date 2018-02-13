@@ -32,6 +32,11 @@
 							class="active"
 						@endif
 					><a href="/blog">{{ ucfirst(__('blog')) }}<span class="sr-only">(current)</span></a></li>
+			        <li id="nav-item-contact" 
+						@if (Request::segment(1) == 'contact')
+							class="active"
+						@endif
+					><a href="/contact">{{ ucfirst(__('contact')) }}<span class="sr-only">(current)</span></a></li>
 <!--			        <li class="dropdown">
 			          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
 			          <ul class="dropdown-menu">

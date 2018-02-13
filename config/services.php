@@ -15,8 +15,8 @@ return [
     */
 
     'mailgun' => [
-        'domain' => env('MAILGUN_DOMAIN'),
-        'secret' => env('MAILGUN_SECRET'),
+        'domain' => env('botiga.lapetitaoliba.cat'),
+        'secret' => env('key-9d6e104b1f1f01228e82a94d1807f40d'),
     ],
 
     'ses' => [

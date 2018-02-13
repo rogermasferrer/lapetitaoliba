@@ -42,6 +42,11 @@ Route::get('blog', 'BlogController@index');
 // View a blog post
 Route::get('blog/{id}', 'BlogController@view')->name('blog.view');
 
+// View product catalog
+Route::get('catalog', 'CatalogController@view');
+// View product
+Route::get('product/{id}', 'ProductController@view');
+
 Route::middleware(['auth','check_role:admin'])->group(function() {
 	Route::prefix('admin')->group(function() {
 		/////////////////////////////////////////////////////////////////////////////////////
@@ -78,6 +83,18 @@ Route::middleware(['auth','check_role:admin'])->group(function() {
 		Route::post('images/edit/{id}', 'ImagesController@update');
 		// Delete an image
 		Route::post('images/delete/{id}', 'ImagesController@delete');
+
+		//////////////////////////////////////////////////////////////////////////////////////
+		// PRODUCTS
+		//////////////////////////////////////////////////////////////////////////////////////
+		// Add product
+		Route::get('product/add', 'ProductController@add');
+		
 	});
 });
+
+// Contact form
+Route::get('/contact', 'ContactEmailController@add');
+Route::post('contact', 'ContactEmailController@send');
+
 

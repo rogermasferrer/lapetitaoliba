@@ -46,6 +46,12 @@
 							@endguest
 						</div>
 					</div>
+        	        <div class="form-group">
+		                {{ Form::label('subject', ucfirst(__('subject')), ['class' => 'col-md-2 control-label']) }}
+						<div class="col-md-6">
+	    	               	{{ Form::text('subject', null, ['class' => 'form-control']) }}
+						</div>
+					</div>
                     <div class="form-group">
     	               	{{ Form::label('message', ucfirst(__('message')), ['class' => 'col-md-2 control-label']) }}
 						<div class="col-md-8">
@@ -55,12 +61,12 @@
 							</script>
 						</div>
 					</div>
-					<div class="form-group">
+<!--					<div class="form-group">
 						{{ Form::label('attachment', ucfirst(__('attachment')), ['class' => 'col-md-2 control-label']) }}
 						<div class="col-md-1">
 							{{ Form::file('attachment', null, ['class' => 'form-control']) }}
 						</div>
-					</div>
+					</div>-->
 					<div class="col-md-6 col-md-offset-2">
 	                	{{ Form::submit(ucfirst(__('send')), ['class' => 'btn btn-primary']) }}
 						{{ HTML::link(URL::previous(), ucfirst(__('cancel'))) }}

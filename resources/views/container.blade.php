@@ -1,6 +1,6 @@
 @extends('layouts.blank')
 
-(@section('container')
+@section('container')
 	@section('navbar')
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="container-fluid">

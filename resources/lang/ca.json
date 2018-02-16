@@ -36,9 +36,11 @@
 
 	"path": "ruta",
 
+	"contact": "contacte",
 	"contact us": "contacta amb nosaltres",
 	"your email": "la teva adre&ccedil;a",
 	"your name": "el teu nom",
+	"subject": "assumpte",
 	"message": "missatge",
 	"attachment": "adjunt",
 	"email sent": "missatge enviat"

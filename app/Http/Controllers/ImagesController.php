@@ -23,14 +23,14 @@ class ImagesController extends Controller
 			'comment' => 'required',
 			'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
 		]);
-		// move image to public/images
+		// move image to public/images/
 		$imageName = $request->image->getClientOriginalName();
 		$storedName = time() . "_" . $imageName;
-		$resMove = $request->image->move(public_path('images'), time() . $storedName);
+		$resMove = $request->image->move(public_path(env('IMAGES_PATH','images/')), $storedName);
 		// add image to database
 		$image = new Image();
 		$image->name = $request->input('name');
-		$image->path = env('IMAGES_PATH', 'images') . time() . $storedName;
+		$image->path = env('IMAGES_PATH','images/') . $storedName;
 		$image->comment = $request->input('comment');
 		$image->save();
 

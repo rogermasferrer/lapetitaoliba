@@ -43,6 +43,11 @@
 	"subject": "assumpte",
 	"message": "missatge",
 	"attachment": "adjunt",
-	"email sent": "missatge enviat"
+	"email sent": "missatge enviat",
+
+	"add new product": "afegeix nou producte",
+	"description": "descripci&oacute;",
+	"price": "preu",
+	"product added": "producte afegit"
 }
 

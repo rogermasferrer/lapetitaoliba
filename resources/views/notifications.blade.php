@@ -3,13 +3,13 @@
 		<div class="alert alert-danger">
 			<ul>
 				@foreach ($errors->all() as $error)
-					<li>{{ $error }}</li>
+					<li>{{ ucfirst(__($error)) }}</li>
 				@endforeach
 			</ul>
 		</div>
 	@elseif (Session::has('success'))
 		<div class="alert alert-success">
-			{{ Session::get('success') }}
+			{{ ucfirst(__(Session::get('success'))) }}
 		</div>
 	@endif
 </div>

@@ -3,21 +3,7 @@
 @section('title', ucfirst(__('contact us')));
 
 @section('content')
-    <div id="notifications">
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-               </ul>
-           </div>
-        @elseif (Session::has('success'))
-            <div class="alert alert-success">
-                {{ ucfirst(__(Session::get('success'))) }}
-            </div>
-        @endif
-    </div>
+	@include('notifications')
     <div class="row">
         <div class="col-xs-12">
             <div class="panel panel-default">

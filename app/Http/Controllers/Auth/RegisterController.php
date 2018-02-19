@@ -28,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/blog';
+    protected $redirectTo = '/home';
 
     /**
      * Create a new controller instance.
@@ -52,6 +52,12 @@ class RegisterController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+			'firstName' => 'required|string|max:60',
+			'lastName' => 'required|string|max:60',
+			'address' => 'required|string|max:255',
+			'town' => 'required|string|max:60',
+			'zipcode' => 'required|numeric',
+			'province' => 'required|string|max:60',
         ]);
     }
 
@@ -67,6 +73,12 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'first_name' => $data['firstName'],
+            'last_name' => $data['lastName'],
+            'address' => $data['address'],
+            'town' => $data['town'],
+            'zipcode' => $data['zipcode'],
+            'province' => $data['province'],
         ]);
 		$user->roles()->attach(Role::where('name', 'user')->first());
 		return $user;

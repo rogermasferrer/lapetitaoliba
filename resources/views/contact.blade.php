@@ -1,26 +1,12 @@
 @extends('container')
 
-@section('title', ucfirst(__('contact us')));
+@section('title', ucfirst(__('contact us')))
 
 @section('content')
-    <div id="notifications">
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-               </ul>
-           </div>
-        @elseif (Session::has('success'))
-            <div class="alert alert-success">
-                {{ ucfirst(__(Session::get('success'))) }}
-            </div>
-        @endif
-    </div>
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="panel panel-default">
+	@include('notifications')
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="panel panel-default">
 				<div class="panel-heading">{{ ucfirst(__('contact us')) }}</div>
 				<div class="panel-body">
 					{{ Form::open(['action' => 'ContactEmailController@send', 'files' => true, 'class' => 'form-horizontal']) }}

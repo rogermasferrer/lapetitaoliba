@@ -18,34 +18,20 @@ Auth::routes();
 // Application routes
 Route::get('/', 'BlogController@index');
 Route::get('/home', function() {
-	return redirect(route('admin'));
+	return redirect()->intended();
 });
-
-//Route::middleware(['VerifyCsrfToken'])->group(function() {
-//Route::get('hello', function() {
-//    return 'hello';
-//});
-//// un pattern per a type està definit al Route controller, però aquest el sobreescriu
-//Route::get('type/{type}', function($type) {
-//    return "type: $type";
-//})->where(['type' => '[a-z]+']);
-//
-//// La funció name() permet anomenar una url i referir-s'hi pel nom
-//Route::get('ruta/nominal', function() {
-//    return "Ruta nominal";
-//})->name('named');
-
-//Route::get('home', 'HomeController@index');
 
 // View blog
 Route::get('blog', 'BlogController@index');
 // View a blog post
 Route::get('blog/{id}', 'BlogController@view')->name('blog.view');
 
-//// View product catalog
-//Route::get('catalog', 'CatalogController@view');
-//// View product
-//Route::get('product/{id}', 'ProductController@view');
+// View product catalog
+Route::get('catalog', 'ProductController@index');
+// View a product
+Route::get('product/{id}', 'ProductController@view')->name('product.view');
+// Add product to cart
+Route::post('product/{id}', 'ProductController@addToCart');
 
 Route::middleware(['auth','check_role:admin'])->group(function() {
 	Route::prefix('admin')->group(function() {
@@ -72,9 +58,9 @@ Route::middleware(['auth','check_role:admin'])->group(function() {
 		// IMAGES
 		//////////////////////////////////////////////////////////////////////////////////////
 		// View all uploaded images
-		Route::get('images' , 'ImagesController@list')->name('images.list');
+		Route::get('images' , 'ImagesController@list')->name('image.list');
 		// Upload image
-		Route::get('images/add', 'ImagesController@add')->name('images.add');
+		Route::get('images/add', 'ImagesController@add')->name('image.add');
 		Route::post('images/add', 'ImagesController@create');
 		// View an image
 
@@ -87,13 +73,23 @@ Route::middleware(['auth','check_role:admin'])->group(function() {
 		//////////////////////////////////////////////////////////////////////////////////////
 		// PRODUCTS
 		//////////////////////////////////////////////////////////////////////////////////////
+		// View all blog posts
+		Route::get('products', 'ProductController@list')->name('product.list');;
 		// Add product
-		Route::get('product/add', 'ProductController@add')->name('product-add');
+		Route::get('product/add', 'ProductController@add')->name('product.add');
 		Route::post('product/add', 'ProductController@create');
 		// Edit a product
-		Route::get('product/edit/{id}', 'ProductController@edit');
+		Route::get('product/edit/{id}', 'ProductController@edit')->name('product.edit');
 		Route::post('product/edit/{id}', 'ProductController@update');
+		// Delete a product
+		Route::post('product/delete/{id}', 'ProductController@delete');
 	});
+});
+
+// Actions for which you need to be authenticated
+Route::middleware('auth')->group(function() {
+	// Order email when buying
+	Route::any('order/send/{id}', 'OrderController@send');
 });
 
 // Contact form

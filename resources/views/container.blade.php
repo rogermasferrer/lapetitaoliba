@@ -27,16 +27,13 @@
 							>{{ HTML::link(route('admin'), ucfirst(__('management'))) }}</li>
 						@endif
 					@endauth
-			        <li id="nav-item-blog" 
-						@if (Request::segment(1) == 'blog')
-							class="active"
-						@endif
-					><a href="/blog">{{ ucfirst(__('blog')) }}<span class="sr-only">(current)</span></a></li>
-			        <li id="nav-item-contact" 
-						@if (Request::segment(1) == 'contact')
-							class="active"
-						@endif
-					><a href="/contact">{{ ucfirst(__('contact')) }}<span class="sr-only">(current)</span></a></li>
+					@foreach (['catalog','blog','contact'] as $menu)
+				        <li id="nav-item-{{ $menu }}" 
+							@if (Request::segment(1) == $menu)
+								class="active"
+							@endif
+						><a href="/{{ $menu }}">{{ ucfirst(__($menu)) }}<span class="sr-only">(current)</span></a></li>
+					@endforeach
 <!--			        <li class="dropdown">
 			          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
 			          <ul class="dropdown-menu">
@@ -93,34 +90,38 @@
 		</nav>
 		@show
 	
-	@section('header')
-		<div class="container">
-			<img class="img-responsive" src="/images/header.jpeg" />
+		<div id="header" class="container-fluid page-header">
+			@section('header')
+				@if (Request::fullUrlIs('*/blog'))
+					<img class="img-responsive" src="/images/header.jpeg" />
+				@endif
 		</div>
 		@show
 	
-	<div class="container">
-		@section('content')
-	        <div class="row">
-	            <div class="col-sm-4">
-	                <p>Some content</p>
-	            </div>
-	            <div class="col-sm-4">
-	                <p>Column 2</p>
-	            </div>
-	            <div class="col-sm-4">
-	                <p>Final column</p>
-	            </div>
-			</div>
-		@show
-	</div>
-	
-	@section('footer')
-		<div class="container-fluid">
-			<div class="text-center bg-info">
-				<p>&copy;Some copyright</p>
-			</div>
+		<div id="content" class="container-fluid">
+			@section('content')
+	        	<div class="row">
+	            	<div class="col-sm-4">
+	                	<p>Some content</p>
+		            </div>
+		            <div class="col-sm-4">
+	    	            <p>Column 2</p>
+	        	    </div>
+	            	<div class="col-sm-4">
+		                <p>Final column</p>
+		            </div>
+				</div>
+			@show
 		</div>
-		@show
+	
+		@section('footer')
+			<div id="footer" class="container-fluid">
+				<div class="row">
+					<div class="col-md-12 col-md-offset-1">
+						<p>&copy; La petita &ograve;liba {{ date('Y') }}</p>
+					</div>
+				</div>
+			</div>
+			@show
 @endsection
 

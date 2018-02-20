@@ -6,7 +6,7 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<div class="row">
-						<div class="col-md-12">{{ ucfirst(__('manage images')) }} |	{{ HTML::link(route('images.add'), ucfirst(__('add new image'))) }}</div>
+						<div class="col-md-12">{{ ucfirst(__('manage images')) }} |	{{ HTML::link(route('image.add'), ucfirst(__('add new image'))) }}</div>
 					</div>
 				<div class="panel-body">
 					<div class="row">

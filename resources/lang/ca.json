@@ -43,11 +43,35 @@
 	"subject": "assumpte",
 	"message": "missatge",
 	"attachment": "adjunt",
+	"send": "envia",
 	"email sent": "missatge enviat",
 
+	"catalog": "cat&agrave;leg",
+	"product catalog": "cat&agrave;leg de productes",
+	"add to cart": "compra",
+	"products": "productes",
+	"manage products": "administra els productes",
 	"add new product": "afegeix nou producte",
+	"edit product": "edita el producte",
 	"description": "descripci&oacute;",
 	"price": "preu",
-	"product added": "producte afegit"
+	"units": "unitats",
+	"product added": "producte afegit",
+	"or": "o",
+	"to order": "per a comprar",
+
+	"username": "nom d'usuari",
+	"password": "contrassenya",
+	"confirm password": "confirma la contrassenya",
+	"first name": "nom",
+	"last name": "cognoms",
+	"address": "adre&ccedil;a",
+	"town": "poblaci&oacute;",
+	"zipcode": "codi postal",
+	"province": "prov&iacute;ncia",
+	"order email sent, we will com back to you with payment information": "comanda enviada, contactarem amb tu amb la informaci&oacute; de pagament",
+
+	"remember me": "recorda'm",
+	"forgot your password?": "has oblidat la contrassenya?"
 }
 

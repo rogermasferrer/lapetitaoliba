@@ -1,12 +1,12 @@
 @extends('container')
 
-@section('title', ucfirst(__('contact us')));
+@section('title', ucfirst(__('contact us')))
 
 @section('content')
 	@include('notifications')
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="panel panel-default">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="panel panel-default">
 				<div class="panel-heading">{{ ucfirst(__('contact us')) }}</div>
 				<div class="panel-body">
 					{{ Form::open(['action' => 'ContactEmailController@send', 'files' => true, 'class' => 'form-horizontal']) }}

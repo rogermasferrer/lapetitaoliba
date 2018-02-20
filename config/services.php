@@ -1,7 +1,7 @@
 <?php
 
 return [
-				
+
     /*
     |--------------------------------------------------------------------------
     | Third Party Services
@@ -16,7 +16,7 @@ return [
 
     'mailgun' => [
         'domain' => env('botiga.lapetitaoliba.cat'),
-        'secret' => env('key-dd97ad1cb8aabc63772898f3a4b390b3'),
+//        'secret' => env('key-dd97ad1cb8aabc63772898f3a4b390b3'),
     ],
 
     'ses' => [

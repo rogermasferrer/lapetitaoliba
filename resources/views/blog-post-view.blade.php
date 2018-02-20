@@ -1,6 +1,6 @@
 @extends('container')
 
-@section('title', 'View blog post');
+@section('title', 'View blog post')
 
 @section('content')
 	<div class="panel panel-default">

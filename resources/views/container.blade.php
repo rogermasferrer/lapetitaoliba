@@ -92,7 +92,7 @@
 	
 		<div id="header" class="container-fluid page-header">
 			@section('header')
-				@if (Request::fullUrlIs('*/blog'))
+				@if (Request::is('blog'))
 					<img class="img-responsive" src="/images/header.jpeg" />
 				@endif
 		</div>
